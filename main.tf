@@ -6,7 +6,7 @@ resource "null_resource" "shared_vars" {
 
 
 resource "aws_ecs_cluster" "cluster" {
-    name = "${null_resource.shared_vars.triggers.base_resource_name}-ecs"
+    name = "${null_resource.shared_vars.triggers.base_resource_name}"
 }
 
 data "template_file" "ecs_lc_user_data" {
