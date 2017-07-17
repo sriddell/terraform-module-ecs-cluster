@@ -9,16 +9,16 @@ resource "aws_ecs_cluster" "cluster" {
     name = "${null_resource.shared_vars.triggers.base_resource_name}"
 }
 
-data "template_file" "ecs_lc_user_data" {
-    template = "${file("${path.module}/templates/container-instance-start.sh")}"
+# data "template_file" "ecs_lc_user_data" {
+#     template = "${file("${path.module}/templates/container-instance-start.sh")}"
 
-    vars {
-        cluster_name = "${aws_ecs_cluster.cluster.name}"
-        environment = "${var.environment}"
-        vpc_id = "${var.vpc_id}"
-        workspace_endpoint = "${var.workspace_endpoint}"
-    }
-}
+#     vars {
+#         cluster_name = "${aws_ecs_cluster.cluster.name}"
+#         environment = "${var.environment}"
+#         vpc_id = "${var.vpc_id}"
+#         workspace_endpoint = "${var.workspace_endpoint}"
+#     }
+# }
 
 resource "aws_iam_role" "ecs" {
     name = "${null_resource.shared_vars.triggers.base_resource_name}-ecs-role"
@@ -194,7 +194,7 @@ resource "aws_launch_configuration" "ecs" {
     associate_public_ip_address = false
     key_name = "${var.key_name}"
     security_groups = ["${concat(var.container_instance_sec_group_ids,list(aws_security_group.container_instance.id))}"]
-    user_data = "${data.template_file.ecs_lc_user_data.rendered}"
+    //user_data = "${data.template_file.ecs_lc_user_data.rendered}"
 
     lifecycle {
         create_before_destroy = true
