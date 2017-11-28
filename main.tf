@@ -137,15 +137,13 @@ resource "aws_iam_policy" "service_policy" {
 EOF
 }
 
-resource "aws_iam_policy_attachment" "ecs" {
-    name = "${replace(null_resource.shared_vars.triggers.base_resource_name,".","_")}-ecs-attach"
-    roles = ["${aws_iam_role.ecs.id}"]
+resource "aws_iam_role_policy_attachment" "ecs" {
+    roles = "${aws_iam_role.ecs.id}"
     policy_arn = "${aws_iam_policy.instance_policy.arn}"
 }
 
-resource "aws_iam_policy_attachment" "ecs_service" {
-    name = "${replace(null_resource.shared_vars.triggers.base_resource_name,".","_")}-ecs-service-attach"
-    roles = ["${aws_iam_role.ecs_service.id}"]
+resource "aws_iam_role_policy_attachment" "ecs_service" {
+    roles = "${aws_iam_role.ecs_service.id}"
     policy_arn = "${aws_iam_policy.service_policy.arn}"
 }
 

@@ -17,3 +17,7 @@ output "service_role_arn" {
 output "task_role_arn" {
     value = "${aws_iam_role.ecs_task.arn}"
 }
+
+output "container_instance_role" {
+    valiue = "${aws_iam_role.ecs.name}"
+}
