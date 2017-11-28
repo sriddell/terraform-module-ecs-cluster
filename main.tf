@@ -138,12 +138,12 @@ EOF
 }
 
 resource "aws_iam_role_policy_attachment" "ecs" {
-    roles = "${aws_iam_role.ecs.id}"
+    role = "${aws_iam_role.ecs.id}"
     policy_arn = "${aws_iam_policy.instance_policy.arn}"
 }
 
 resource "aws_iam_role_policy_attachment" "ecs_service" {
-    roles = "${aws_iam_role.ecs_service.id}"
+    role = "${aws_iam_role.ecs_service.id}"
     policy_arn = "${aws_iam_policy.service_policy.arn}"
 }
 
