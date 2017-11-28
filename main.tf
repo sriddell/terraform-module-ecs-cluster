@@ -17,6 +17,9 @@ data "template_file" "ecs_lc_user_data" {
         environment = "${var.environment}"
         vpc_id = "${var.vpc_id}"
         workspace_endpoint = "${var.workspace_endpoint}"
+        enable_appdynamics = "${var.enable_appdynamics}"
+        appdynamics_agent_access_key_encrypted = "${var.appdynamics_agent_access_key_encrypted}"
+        appdynamics_api_user_key_encrypted = "${var.appdynamics_api_user_key_encrypted}"
     }
 }
 

@@ -44,9 +44,13 @@ variable "vpc_id" {}
 variable "vpc_cidr_block" {}
 variable "private_subnets" {}
 
-variable container_instance_sec_group_ids {
+variable "container_instance_sec_group_ids" {
     default  = []
 }
 
-variable workspace_endpoint {}
+variable "workspace_endpoint" {default = ""}
+
+variable "enable_appdynamics" {default = "false"}
+variable "appdynamics_agent_access_key_encrypted" { default = "" }
+variable "appdynamics_api_user_key_encrypted" { default = "" }
 
