@@ -19,5 +19,5 @@ output "task_role_arn" {
 }
 
 output "container_instance_role" {
-    valiue = "${aws_iam_role.ecs.name}"
+    value = "${aws_iam_role.ecs.name}"
 }
