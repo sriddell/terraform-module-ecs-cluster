@@ -6,8 +6,8 @@ variable "environment" {
 variable "costcenter" {
 }
 
-variable "product_name" {
-}
+variable "group" {default=""}
+
 
 variable "expiration" {
     default = "never"

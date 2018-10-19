@@ -1,6 +1,6 @@
 resource "null_resource" "shared_vars" {
     triggers = {
-        base_resource_name = "${var.environment}-${var.product_name}"
+        base_resource_name = "${var.environment}-${var.group}"
     }
 }
 
@@ -231,7 +231,7 @@ resource "aws_autoscaling_group" "ecs" {
     }
     tag {
         key = "Group"
-        value = "${var.product_name}"
+        value = "${var.group}"
         propagate_at_launch = true
     }
     tag {
