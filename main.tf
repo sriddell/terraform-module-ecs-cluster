@@ -147,13 +147,12 @@ resource "aws_iam_role_policy_attachment" "ecs_service" {
 resource "aws_iam_instance_profile" "ecs_instance_profile" {
     name = "${var.cluster_name}-ecs-instance-profile"
     role = "${aws_iam_role.ecs.name}"
-    # get around https://github.com/hashicorp/terraform/issues/5862 until terraform updated to 0.6.15
-    provisioner "local-exec" {
-        command = "sleep 30"
-    }
 }
 
 resource "aws_security_group" "container_instance" {
+    lifecycle {
+        create_before_destroy = true
+    }
     vpc_id = "${var.vpc_id}"
     name = "${var.cluster_name}-container-instance-sg"
     description = "Security group for ssh and ephemeral docker ports to container instances"
