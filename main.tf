@@ -213,6 +213,12 @@ resource "aws_autoscaling_group" "ecs" {
         propagate_at_launch = true
     }
     tag {
+        key = "Service"
+        value = "placeholder"
+        propagate_at_launch = true
+    }
+
+    tag {
         key = "Environment"
         value = "${var.environment}"
         propagate_at_launch = true
