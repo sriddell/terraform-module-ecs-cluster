@@ -1,6 +1,6 @@
 #!/bin/bash
 systemctl stop ecs || echo "ECS already stopped"
-rm /var/lib/ecs/data/ecs_agent_data.json
+rm -f /var/lib/ecs/data/ecs_agent_data.json
 echo ECS_CLUSTER=${cluster_name} >> /etc/ecs/ecs.config
 
 if [ "${enable_appdynamics}" == "true" ];
