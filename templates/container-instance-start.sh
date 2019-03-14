@@ -39,6 +39,10 @@ EOF
 fi
 
 docker ps #workaround for issue https://github.com/aws/amazon-ecs-agent/issues/389
+
+# increase file limits
+sed -i .bak 's/OPTIONS="--default-ulimit nofile=1024:4096"/OPTIONS="--default-ulimit nofile=16384:16384"/' /etc/sysconfig/docker
+
 service docker restart && start ecs
 
 if [ "${enable_appdynamics}" == "true" ];
