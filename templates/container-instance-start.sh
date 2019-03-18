@@ -29,6 +29,7 @@ EOF
 fi
 
 systemctl restart docker
+systemctl enable --now --no-block ecs.service
 
 if [ "${enable_appdynamics}" == "true" ];
 then
