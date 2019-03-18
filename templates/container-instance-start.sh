@@ -29,7 +29,6 @@ EOF
 fi
 
 systemctl restart docker
-systemctl restart ecs
 
 if [ "${enable_appdynamics}" == "true" ];
 then
