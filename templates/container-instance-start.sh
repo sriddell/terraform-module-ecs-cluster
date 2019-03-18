@@ -1,4 +1,5 @@
 #!/bin/bash
+docker ps
 systemctl stop ecs || echo "ECS already stopped"
 rm -f /var/lib/ecs/data/ecs_agent_data.json
 echo ECS_CLUSTER=${cluster_name} >> /etc/ecs/ecs.config
@@ -27,8 +28,8 @@ EOF
     python /tmp/docker_daemon.py
 fi
 
-docker ps #workaround for issue https://github.com/aws/amazon-ecs-agent/issues/389
-systemctl restart docker && systemctl start ecs
+systemctl restart docker
+systemctl restart ecs
 
 if [ "${enable_appdynamics}" == "true" ];
 then
