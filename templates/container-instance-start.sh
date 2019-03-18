@@ -28,6 +28,7 @@ EOF
     python /tmp/docker_daemon.py
 fi
 
+sed -i .bak 's/OPTIONS="--default-ulimit nofile=1024:4096"/OPTIONS="--default-ulimit nofile=16384:16384"/' /etc/sysconfig/docker
 systemctl restart docker
 systemctl enable --now --no-block ecs.service
 
