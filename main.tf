@@ -191,7 +191,7 @@ resource "aws_launch_configuration" "ecs" {
   iam_instance_profile = aws_iam_instance_profile.ecs_instance_profile.id
   associate_public_ip_address = false
   key_name = var.key_name
-  security_groups = "${var.container_instance_sec_group_ids}"
+  security_groups = concat( var.container_instance_sec_group_ids, [aws_security_group.container_instance.id] )
   user_data = data.template_file.ecs_lc_user_data.rendered
 
   lifecycle {
